@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import FacebookAuth from 'react-facebook-auth';
 import {DatePicker} from "./datepicker.js";
 import {getDates, sendDates} from "../../api/dates-api.js"
+import {toast} from "react-toastify";
 import {
   setUser
 } from '../../modules/counter'
@@ -25,14 +26,23 @@ export class Home extends Component{
   }
 
   updateDates = async () => {
-    console.log("asking for users");
-    let users = (await getDates()).data;
-    this.setState({users});
+    try {
+      let users = (await getDates()).data;
+      this.setState({users});
+    } catch(e) {
+      toast.error("לא מצליח לטעון תאריכים");
+    }
+    
   }
 
   choseDates = async () => {
-    await sendDates(this.props.user, this.datepicker.current.getDates());
-    this.updateDates();
+    try {
+      await sendDates(this.props.user, this.datepicker.current.getDates());
+      await this.updateDates();
+      toast.success("עדכן בהצלחה");
+    } catch(e) {
+      toast.error("לא מצליח לשלוח תאריכים");
+    }
   }
 
   render() {
