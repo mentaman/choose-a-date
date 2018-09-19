@@ -8,6 +8,7 @@ const App = () => (
     <header>
       <div className="inside-app">
         <h1>תבחר זמן</h1>
+        <h2>תמיד רציתם לבחור זמן ולא ידעתם איך?</h2>
       </div>
     </header>
     <main>
