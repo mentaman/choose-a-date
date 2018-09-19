@@ -10,5 +10,7 @@ router.get('/', function(req, res, next) {
     "20/8/2018": ["10215264975716153"]
   });
 });
-
+router.post('/', function(req, res, next) {
+  res.send("success");
+});
 module.exports = router;

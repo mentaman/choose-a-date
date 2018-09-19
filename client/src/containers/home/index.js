@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import FacebookAuth from 'react-facebook-auth';
 import {DatePicker} from "./datepicker.js";
-import {getDates} from "../../api/dates-api.js"
+import {getDates, sendDates} from "../../api/dates-api.js"
 import {
   setUser
 } from '../../modules/counter'
@@ -20,12 +20,18 @@ export class Home extends Component{
     this.state = {
       users: {}
     }
+    this.datepicker = React.createRef();
     this.updateDates();
   }
+
   updateDates = async () => {
     console.log("asking for users");
     let users = (await getDates()).data;
     this.setState({users});
+  }
+
+  choseDates = () => {
+    sendDates(this.props.user, this.datepicker.current.getDates());
   }
 
   render() {
@@ -35,12 +41,15 @@ export class Home extends Component{
           <div>
             היי {this.props.user.name}
             <img src={this.props.user.picture.data.url} />
+            <div style={{textAlign: "center"}}>
+              <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>
+            </div>
             <DatePicker
+              ref={this.datepicker}
               fromDate={new Date("2018-09-19")}
               toDate={new Date("2018-10-5")}
               users={this.state.users}
             />
-            <button>שלח!</button>
           </div> 
         ) : (
         <div>

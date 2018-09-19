@@ -37,6 +37,10 @@ export class DatePicker extends Component {
         };
     }
 
+    getDates = () => {
+        return Object.keys(this.state.dates);
+    }
+
     render() {
         return <div onMouseUp={() => {
             if(this.state.dragging) {
@@ -77,8 +81,8 @@ export class DatePicker extends Component {
                     
                      className={`day ${choosed ? "choosed" : "not-choosed"}`}>
                         {date.getDate()}/{date.getMonth()}/{date.getYear()} - יום {weekday[date.getDay()]}
-                        {this.props.users && this.props.users[getDateFormat(date)] && this.props.users[getDateFormat(date)].map((user) => (
-                            <div>
+                        {this.props.users && this.props.users[getDateFormat(date)] && this.props.users[getDateFormat(date)].map((user, idx) => (
+                            <div key={idx}>
                                 <img src={`http://graph.facebook.com/${user}/picture?type=square`} />
                             </div>
                         ))}

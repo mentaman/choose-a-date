@@ -7,3 +7,14 @@ export function getDates() {
         url:url+"/dates"
       });
 }
+
+export function sendDates(user, dates) {
+    return axios({
+        method:'post',
+        url:url+"/dates",
+        data: {
+            user,
+            dates
+        }
+      });
+}
