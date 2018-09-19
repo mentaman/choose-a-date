@@ -1,4 +1,5 @@
 var express = require('express');
+const graph = require('fbgraph');
 const store = require('../sqlite_nodejs/store.js');
 var router = express.Router();
 
@@ -28,12 +29,29 @@ router.get('/me', async function(req, res, next) {
   let dbDates = await store.getUser(userId);
   res.send(dbDates.map(date => date.Date));
 });
+function graphGetAsPromise(url) {
+  return new Promise((resolve, reject) => {
+    graph.get(url, function(err, res) {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+    });
+  });
+  
+}
 router.post('/', async function(req, res, next) {
   let {dates, user} = req.body;
-  await store.deleteUser(user.id);
-  if(dates.length > 0) {
-    await store.addDates(user.id, dates);
+  let myFacebook = await graphGetAsPromise(`me?access_token=${user.accessToken}`);
+  if(!user.id || user.id !== myFacebook.id) {
+    next(new Error("auth"));
+  } else {
+    await store.deleteUser(user.id);
+    if(dates.length > 0) {
+      await store.addDates(user.id, dates);
+    }
+    res.send("good");
   }
-  res.send("good");
 });
 module.exports = router;
