@@ -25,7 +25,7 @@ function getDates(startDate, stopDate) {
  weekday[5] = "שישי";
  weekday[6] = "שבת";
  export function getDateFormat(date) {
-     return `${date.getDate()}/${date.getMonth()}/${date.getYear()}`;
+     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
  }
 export class DatePicker extends Component {
     constructor(props) {
@@ -36,6 +36,7 @@ export class DatePicker extends Component {
             cleaning: false
         };
     }
+
     render() {
         return <div onMouseUp={() => {
             if(this.state.dragging) {
@@ -46,7 +47,7 @@ export class DatePicker extends Component {
             {getDates(this.props.fromDate, this.props.toDate).map((date) => {
                 let choosed = this.state.dates[getDateFormat(date)];
                 return (
-                <div onMouseDown={() => {
+                <div key={getDateFormat(date)} onMouseDown={() => {
                         console.log("down", date);
                         let cleaning = false;
                         let newDates = {...this.state.dates};
@@ -74,7 +75,14 @@ export class DatePicker extends Component {
                         }
                     }}
                     
-                     className={`day ${choosed ? "choosed" : "not-choosed"}`}>{date.getDate()}/{date.getMonth()}/{date.getYear()} - יום {weekday[date.getDay()]}</div>
+                     className={`day ${choosed ? "choosed" : "not-choosed"}`}>
+                        {date.getDate()}/{date.getMonth()}/{date.getYear()} - יום {weekday[date.getDay()]}
+                        {this.props.users && this.props.users[getDateFormat(date)] && this.props.users[getDateFormat(date)].map((user) => (
+                            <div>
+                                <img src={`http://graph.facebook.com/${user}/picture?type=square`} />
+                            </div>
+                        ))}
+                     </div>
             )})}
         </div>
     }

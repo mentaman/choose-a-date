@@ -35,7 +35,8 @@ button:disabled {
   display: inline-block;
   border: 1px solid black;
   width: 150px;
-  height: 150px;
+  height: 230px;
+  overflow-y: scroll;
 }
 .day.choosed{
   background: green;
