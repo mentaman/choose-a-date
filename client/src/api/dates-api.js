@@ -8,6 +8,17 @@ export function getDates() {
       });
 }
 
+export function getMyDates(user, dates) {
+    return axios({
+        method:'post',
+        url:url+"/dates",
+        params: {
+            userId: user.id,
+            accessToken: user.accessToken
+        }
+      });
+}
+
 export function sendDates(user, dates) {
     return axios({
         method:'post',

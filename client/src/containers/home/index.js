@@ -30,8 +30,9 @@ export class Home extends Component{
     this.setState({users});
   }
 
-  choseDates = () => {
-    sendDates(this.props.user, this.datepicker.current.getDates());
+  choseDates = async () => {
+    await sendDates(this.props.user, this.datepicker.current.getDates());
+    this.updateDates();
   }
 
   render() {
@@ -44,12 +45,15 @@ export class Home extends Component{
             <div style={{textAlign: "center"}}>
               <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>
             </div>
-            <DatePicker
-              ref={this.datepicker}
-              fromDate={new Date("2018-09-19")}
-              toDate={new Date("2018-10-5")}
-              users={this.state.users}
-            />
+            {this.state.users ? <DatePicker
+                  ref={this.datepicker}
+                  fromDate={new Date("2018-09-19")}
+                  toDate={new Date("2018-10-5")}
+                  users={this.state.users}
+                  user={this.props.user}
+                /> : <div>
+                <div>חכה שיטען משתמשים</div>
+              </div>}
           </div> 
         ) : (
         <div>

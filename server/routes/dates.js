@@ -22,10 +22,18 @@ router.get('/', async function(req, res, next) {
   }
   res.send(formatedDate);
 });
+router.get('/me', async function(req, res, next) {
+  console.log(req.query);
+  let userId = req.query.userId;
+  let dbDates = await store.getUser(userId);
+  res.send(dbDates.map(date => date.Date));
+});
 router.post('/', async function(req, res, next) {
   let {dates, user} = req.body;
   await store.deleteUser(user.id);
-  await store.addDates(user.id, dates);
-  res.send(req.body);
+  if(dates.length > 0) {
+    await store.addDates(user.id, dates);
+  }
+  res.send("good");
 });
 module.exports = router;
