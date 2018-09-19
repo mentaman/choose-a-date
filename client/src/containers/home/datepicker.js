@@ -1,0 +1,81 @@
+import React, {Component} from 'react'
+Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+
+function getDates(startDate, stopDate) {
+   var dateArray = new Array();
+   var currentDate = startDate;
+   while (currentDate <= stopDate) {
+     dateArray.push(currentDate)
+     currentDate = currentDate.addDays(1);
+   }
+   return dateArray;
+ }
+
+
+ let weekday = new Array(7);
+ weekday[0] =  "ראשון";
+ weekday[1] = "שני";
+ weekday[2] = "שלישי";
+ weekday[3] = "רביעי";
+ weekday[4] = "חמישי";
+ weekday[5] = "שישי";
+ weekday[6] = "שבת";
+ export function getDateFormat(date) {
+     return `${date.getDate()}/${date.getMonth()}/${date.getYear()}`;
+ }
+export class DatePicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dates: {},
+            dragging: false,
+            cleaning: false
+        };
+    }
+    render() {
+        return <div onMouseUp={() => {
+            if(this.state.dragging) {
+                this.setState({dragging: false})
+            }
+            
+        }} >
+            {getDates(this.props.fromDate, this.props.toDate).map((date) => {
+                let choosed = this.state.dates[getDateFormat(date)];
+                return (
+                <div onMouseDown={() => {
+                        console.log("down", date);
+                        let cleaning = false;
+                        let newDates = {...this.state.dates};
+                        if(choosed) {
+                            cleaning = true;
+                        }
+                        if(cleaning) {
+                            newDates[getDateFormat(date)] = false;
+                        } else {
+                            newDates[getDateFormat(date)] = true;
+                        }
+                        
+                        this.setState({dragging: true, cleaning, dates: newDates})
+                    }} 
+                    onMouseEnter={() => {
+                        if(this.state.dragging) {
+                            let newDates = {...this.state.dates};
+                            if(this.state.cleaning) {
+                                newDates[getDateFormat(date)] = false;
+                            } else {
+                                newDates[getDateFormat(date)] = true;
+                            }
+                            this.setState({dates: newDates})
+                            console.log("hover", date);
+                        }
+                    }}
+                    
+                     className={`day ${choosed ? "choosed" : "not-choosed"}`}>{date.getDate()}/{date.getMonth()}/{date.getYear()} - יום {weekday[date.getDay()]}</div>
+            )})}
+        </div>
+    }
+}

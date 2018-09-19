@@ -1,0 +1,21 @@
+import React from 'react'
+import { Route, Link } from 'react-router-dom'
+import Home from '../home'
+import About from '../about'
+
+const App = () => (
+  <div>
+    <header>
+      <div className="inside-app">
+        <h1>תבחר זמן</h1>
+      </div>
+    </header>
+    <main>
+      <div className="inside-app route">
+        <Route exact path="/" component={Home} />
+      </div>
+    </main>
+  </div>
+)
+
+export default App
