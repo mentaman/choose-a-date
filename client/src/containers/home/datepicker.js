@@ -37,8 +37,12 @@ export class DatePicker extends Component {
         };
     }
 
+    isChosen = (formateddate) => {
+        return this.state.dates[formateddate]
+        || (this.state.dates[formateddate] !== false && this.props.users && this.props.users[formateddate] && this.props.users[formateddate].includes(this.props.user.id));
+    }
     getDates = () => {
-        return Object.keys(this.state.dates).filter(date => this.state.dates[(date)]|| (this.state.dates[(date)] !== false && this.props.users && this.props.users[(date)] && this.props.users[(date)].includes(this.props.user.id)));
+        return getDates(this.props.fromDate, this.props.toDate).map(getDateFormat).filter(date => this.isChosen((date)));
     }
 
     render() {
@@ -49,7 +53,7 @@ export class DatePicker extends Component {
             
         }} >
             {getDates(this.props.fromDate, this.props.toDate).map((date) => {
-                let choosed = this.state.dates[getDateFormat(date)]|| (this.state.dates[getDateFormat(date)] !== false && this.props.users && this.props.users[getDateFormat(date)] && this.props.users[getDateFormat(date)].includes(this.props.user.id));
+                let choosed = this.isChosen(getDateFormat(date));
                 return (
                 <div key={getDateFormat(date)} onMouseDown={() => {
                         console.log("down", date);
