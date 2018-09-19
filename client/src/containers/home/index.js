@@ -59,6 +59,9 @@ export class Home extends Component{
         <div>
           
         <FacebookAuth
+                autoLoad={true}
+                  cookie={true}
+                  xfbml={true}
             appId="337671556778608"
             callback={this.props.setUser}
             component={MyFacebookButton}
