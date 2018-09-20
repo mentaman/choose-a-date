@@ -28,8 +28,9 @@ export class Home extends Component{
 
   updateDates = async () => {
     try {
+      this.setState({loading: true});
       let users = (await getDates()).data;
-      this.setState({users});
+      this.setState({users, loading: false});
     } catch(e) {
       toast.error("לא מצליח לטעון תאריכים");
     }
@@ -63,19 +64,23 @@ export class Home extends Component{
           <div>
             היי {this.props.user.name}
             <img src={this.props.user.picture.data.url} />
-            <div style={{textAlign: "center"}}>
-              {this.state.sending ? (<span>שולח..</span>) : <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>}
-              
-            </div>
-            {this.state.users ? <DatePicker
-                  ref={this.datepicker}
-                  fromDate={new Date("2018-09-19")}
-                  toDate={new Date("2018-10-5")}
-                  users={this.state.users}
-                  user={this.props.user}
-                /> : <div>
-                <div>חכה שיטען משתמשים</div>
-              </div>}
+            {this.state.users ? 
+            (<div>
+              <div style={{textAlign: "center"}}>
+                {this.state.sending ? (<span>שולח..</span>) : <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>}
+                {this.state.loading ? (<span>טוען..</span>) : <button onClick={this.updateDates} style={{width: "100px", height: "30px", marginRight: "50px"}}>רענן</button>}
+              </div> 
+                <DatePicker
+                    ref={this.datepicker}
+                    fromDate={new Date("2018-09-19")}
+                    toDate={new Date("2018-10-5")}
+                    users={this.state.users}
+                    user={this.props.user}
+                />
+              </div>) : 
+                <div>
+                  <div>חכה שיטען משתמשים</div>
+                </div>}
           </div> 
         ) : (
         <div>
