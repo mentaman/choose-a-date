@@ -6,6 +6,8 @@ import FacebookAuth from 'react-facebook-auth';
 import {DatePicker} from "./datepicker.js";
 import {getDates, sendDates} from "../../api/dates-api.js"
 import {toast} from "react-toastify";
+import FacebookLogin from 'react-facebook-login';
+
 import {
   setUser
 } from '../../modules/counter'
@@ -86,13 +88,13 @@ export class Home extends Component{
         ) : (
         <div>
           
-        <FacebookAuth
-            onFailure={this.onFacebookFailure}
-            cookie={true}
+            <FacebookLogin
             appId="337671556778608"
-            callback={this.onFacebookResponse}
-            component={MyFacebookButton}
-          />
+            autoLoad={true}
+            fields="name,email,picture"
+            onFailure={this.onFacebookFailure}
+            render={MyFacebookButton}
+            callback={this.onFacebookResponse} />,
           </div>
         )}
     </div>
