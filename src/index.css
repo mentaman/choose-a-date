@@ -13,8 +13,12 @@ body {
   line-height: 1.5;
 }
 .inside-app {
-  width: 960px;
-  margin: auto;
+  padding-right: 15px;
+  max-width: 960px;
+  box-sizing: border-box;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
 }
 .route {
   margin-top: 50px;
