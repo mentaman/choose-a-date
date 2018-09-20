@@ -3,7 +3,7 @@
   "homepage": "https://create-react-app-redux.now.sh",
   "scripts": {
     "deploy": "now && now alias",
-    "start": "react-scripts start",
+    "start": "npm run build && node ./bin/www",
     "now-start": "serve -s ./build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -27,6 +27,16 @@
     "redux": "4.0.0",
     "redux-thunk": "2.3.0",
     "sanitize.css": "7.0.3",
-    "serve": "10.0.1"
+    "serve": "10.0.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "fbgraph": "^1.4.4",
+    "http-errors": "~1.6.2",
+    "knex": "^0.15.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11",
+    "sqlite3": "^4.0.2"
   }
 }
