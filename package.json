@@ -13,7 +13,7 @@
   "devDependencies": {
     "prettier": "1.14.3"
   },
-  "dependencies": {,
+  "dependencies": {
     "react-scripts": "1.1.5",
     "axios": "^0.18.0",
     "connected-react-router": "4.4.1",
