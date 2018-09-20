@@ -3,9 +3,9 @@ const path = require('path')
 module.exports = {
     client: 'pg',
     connection: {
-      host : 'sampledb-choose-a-date-server.7e14.starter-us-west-2.openshiftapps.com',
-      user : 'admin',
-      password : '12345678',
-      database : 'sampledb'
+      host : 'stampy.db.elephantsql.com',
+      user : 'qpkmmxvd',
+      password : 'WPxH8Xh3Pux5k_K2aNK2qicarwH7u4u2',
+      database : 'qpkmmxvd'
     }
 };
