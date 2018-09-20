@@ -1,9 +1,11 @@
 const path = require('path')
 
 module.exports = {
-    client: 'sqlite3',
+    client: 'mysql',
     connection: {
-        filename: path.resolve(__dirname, 'database/database.db')
-        
+      host : '127.0.0.1',
+      user : 'admin',
+      password : '12345678',
+      database : 'sampledb'
     }
 };

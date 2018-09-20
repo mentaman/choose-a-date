@@ -47,6 +47,7 @@
     "jest": "20.0.4",
     "knex": "^0.15.2",
     "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",

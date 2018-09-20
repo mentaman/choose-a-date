@@ -8,6 +8,7 @@ function getDateFormat(date) {
 }
 router.get('/test', async function(req, res, next) {
   try {
+    let createTable = await store.migrate();
     let addDates = await store.addDates("10215264975716153", [{Date: "21/09/2018"}]);
     let dates = await store.getDates();
     res.send(dates);
