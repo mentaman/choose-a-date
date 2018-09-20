@@ -19,7 +19,8 @@ export class Home extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      users: {}
+      users: {},
+      sending: false
     }
     this.datepicker = React.createRef();
     this.updateDates();
@@ -37,8 +38,10 @@ export class Home extends Component{
 
   choseDates = async () => {
     try {
+      this.setState({sending: true});
       await sendDates(this.props.user, this.datepicker.current.getDates());
       await this.updateDates();
+      this.setState({sending: false});
       toast.success("עדכנת תאריכים בהצלחה");
     } catch(e) {
       toast.error("לא מצליח לעדכן תאריכים");
@@ -61,7 +64,8 @@ export class Home extends Component{
             היי {this.props.user.name}
             <img src={this.props.user.picture.data.url} />
             <div style={{textAlign: "center"}}>
-              <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>
+              {this.state.sending ? (<span>שולח..</span>) : <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>}
+              
             </div>
             {this.state.users ? <DatePicker
                   ref={this.datepicker}
