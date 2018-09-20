@@ -88,9 +88,7 @@ export class Home extends Component{
           
         <FacebookAuth
             onFailure={this.onFacebookFailure}
-              autoLoad={true}
-                  cookie={true}
-                  xfbml={false}
+            cookie={true}
             appId="337671556778608"
             callback={this.onFacebookResponse}
             component={MyFacebookButton}
