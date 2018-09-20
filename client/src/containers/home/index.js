@@ -39,12 +39,20 @@ export class Home extends Component{
     try {
       await sendDates(this.props.user, this.datepicker.current.getDates());
       await this.updateDates();
-      toast.success("עדכן בהצלחה");
+      toast.success("עדכנת תאריכים בהצלחה");
     } catch(e) {
-      toast.error("לא מצליח לשלוח תאריכים");
+      toast.error("לא מצליח לעדכן תאריכים");
     }
   }
 
+  onFacebookFailure = (failure) => {
+    toast.error("ההתחברות לפייסבוק נכשלה..");
+  }
+
+  onFacebookResponse = (response) => {
+    toast.success(`הי ${response.name}, התחברת בהצלחה!`)
+    this.props.setUser(response);
+  }
   render() {
     return <div>
       {this.props.user ? 
@@ -69,11 +77,12 @@ export class Home extends Component{
         <div>
           
         <FacebookAuth
-                autoLoad={true}
+            onFailure={this.onFacebookFailure}
+              autoLoad={true}
                   cookie={true}
                   xfbml={true}
             appId="337671556778608"
-            callback={this.props.setUser}
+            callback={this.onFacebookResponse}
             component={MyFacebookButton}
           />
           </div>

@@ -20,7 +20,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
       </div>
     </main>
-    <ToastContainer />
+    <ToastContainer rtl />
   </div>
 )
 
