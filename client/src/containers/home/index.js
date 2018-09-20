@@ -19,7 +19,7 @@ export class Home extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      users: {},
+      users: null,
       sending: false
     }
     this.datepicker = React.createRef();
@@ -58,6 +58,7 @@ export class Home extends Component{
     this.props.setUser(response);
   }
   render() {
+    console.log(this.state.users);
     return <div>
       {this.props.user ? 
         (
