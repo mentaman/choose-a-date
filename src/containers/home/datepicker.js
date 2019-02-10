@@ -84,7 +84,7 @@ export class DatePicker extends Component {
                     }}
                     
                      className={`day ${choosed ? "choosed" : "not-choosed"}`}>
-                        {date.getDate()}/{date.getMonth()}/{date.getFullYear()} - יום {weekday[date.getDay()]}
+                        {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()} - יום {weekday[date.getDay()]}
                         {this.props.users && this.props.users[getDateFormat(date)] && this.props.users[getDateFormat(date)].map((user, idx) => (
                             <div key={idx}>
                                 <img src={`http://graph.facebook.com/${user}/picture?type=square`} />
