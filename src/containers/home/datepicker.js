@@ -119,7 +119,7 @@ export class DatePicker extends Component {
                 let formatDate = getDateFormat(date);
                 let choosed = this.isChosen(getDateFormat(date));
                 return <DayDate choosed={choosed} 
-                                rank={ranks.indexOf((this.props.users && this.props.users[formatDate] && this.props.users[formatDate].length+1)  || 1)}
+                                rank={ranks.indexOf((this.props.users && this.props.users[formatDate] && this.props.users[formatDate].length)  || 0)+1}
                                 onMouseEnter={() => {
                                     if(this.state.dragging) {
                                         let newDates = {...this.state.dates};
