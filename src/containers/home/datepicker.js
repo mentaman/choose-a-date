@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Icon, Label } from 'semantic-ui-react'
+import { Icon, Label, Statistic, Button } from 'semantic-ui-react'
 import _ from "lodash";
 
 Date.prototype.addDays = function(days) {
@@ -48,8 +48,9 @@ function getDates(startDate, stopDate) {
         
      }
      render() {
-         let {date, choosed, rank} = this.props;
+         let {date, choosed, rank, usersCount} = this.props;
          let users = this.getUsers();
+         let perctange = Math.floor((users.length/usersCount)*100);
         return (
             <div key={getDateFormat(date)} 
                 onMouseDown={this.props.onMouseDown} 
@@ -63,10 +64,14 @@ function getDates(startDate, stopDate) {
                         <div className={"day-date"}>
                             {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}
                         </div>
-                        <div className={"day-date-count-title"}>
-                            <Label>
-                                <Icon name='users' /> {users.length} איש
-                            </Label>
+                        <div style={{display: "inline-block"}}>
+                            <div style={{background: "#DB2828", color: "#fff", borderRadius: "3px 3px 0 0", fontWeight: "bold", padding: "0 9px 2px 9px"}}>
+                                {users.length}&nbsp;איש
+                            </div>
+                            <div style={{border: "1px solid #DB2828", position: "relative", color: "#DB2828", borderRadius: "0 0 3px 3px", padding: "0 9px"}}>
+                                <div style={{background: "#fff", position: "absolute", right: 0, left: 0, margin: "auto", top: "-3px", transform: "rotate(45deg)", width: "7px", height: "7px"}}></div>
+                                {perctange}%
+                            </div>
                         </div>
                         <div className={"day-date-count-title"}>
                             {this.renderRank(rank)}
@@ -108,8 +113,13 @@ export class DatePicker extends Component {
         return usersLength;
     }
 
+    getAllUsers = () => {
+        return _.uniq(_.flatten(Object.values(this.props.users)));
+    }
+
     render() {
         let ranks = this.getDateRanks();
+        let allUsers = this.getAllUsers();
         console.log(ranks);
         return <div onMouseUp={() => {
             if(this.state.dragging) {
@@ -121,6 +131,7 @@ export class DatePicker extends Component {
                 let formatDate = getDateFormat(date);
                 let choosed = this.isChosen(getDateFormat(date));
                 return <DayDate choosed={choosed} 
+                                usersCount={allUsers.length}
                                 rank={ranks.indexOf((this.props.users && this.props.users[formatDate] && this.props.users[formatDate].length))+1}
                                 onMouseEnter={() => {
                                     if(this.state.dragging) {
