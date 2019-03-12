@@ -7,6 +7,7 @@ import {DatePicker} from "./datepicker.js";
 import {getDates, sendDates} from "../../api/dates-api.js"
 import {toast} from "react-toastify";
 import FacebookLogin from 'react-facebook-login';
+import {Button, Icon} from "semantic-ui-react";
 
 import {
   setUser
@@ -69,9 +70,17 @@ export class Home extends Component{
             <img src={this.props.user.picture.data.url} />
             {this.state.users ? 
             (<div>
-              <div style={{textAlign: "center"}}>
-                {this.state.sending ? (<span>שולח..</span>) : <button onClick={this.choseDates} style={{width: "100px", height: "100px"}}>שלח!</button>}
-                {this.state.loading ? (<span>טוען..</span>) : <button onClick={this.updateDates} style={{width: "100px", height: "30px", marginRight: "50px"}}>רענן</button>}
+              <div style={{textAlign: "center", marginBottom: "45px", marginTop: "15px"}}>
+                {this.state.sending ? (<span>שולח..</span>) : 
+                <Button positive icon labelPosition='left' onClick={this.choseDates}>
+                  שמור!
+                  <Icon name="save" />
+                </Button>}
+                {this.state.loading ? (<span>טוען..</span>) : 
+                  <Button icon labelPosition='left' onClick={this.updateDates} style={{marginRight: "50px"}}>
+                  רענן
+                  <Icon name="refresh" />
+                  </Button>}
               </div> 
                 <DatePicker
                     ref={this.datepicker}
