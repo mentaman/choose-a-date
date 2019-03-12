@@ -65,7 +65,7 @@ function getDates(startDate, stopDate) {
                         </div>
                         <div className={"day-date-count-title"}>
                             <Label>
-                                <Icon name='users' /> {users.length} אנשים
+                                <Icon name='users' /> {users.length} איש
                             </Label>
                         </div>
                         <div className={"day-date-count-title"}>
