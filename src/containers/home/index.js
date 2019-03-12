@@ -66,11 +66,15 @@ export class Home extends Component{
       {this.props.user ? 
         (
           <div>
-            היי {this.props.user.name}
-            <img src={this.props.user.picture.data.url} />
+            <div style={{textAlign: "center", marginTop: "15px", marginBottom: "15px"}}>
+              <div style={{boxShadow: "0 0 3px 0px rgba(0, 0, 0, 0.4)",  borderRadius: "6px", display: "inline-block", paddingLeft: "10px"}}>
+                <img style={{padding: "1px", verticalAlign: "middle", marginLeft: "15px", height: "100%", borderRadius: "0 6px 6px 0"}} src={this.props.user.picture.data.url} />
+              היי {this.props.user.name}
+              </div>
+            </div>
             {this.state.users ? 
             (<div>
-              <div style={{textAlign: "center", marginBottom: "45px", marginTop: "15px"}}>
+              <div style={{textAlign: "center", marginBottom: "30px", marginTop: "5px"}}>
                 {this.state.sending ? (<span>שולח..</span>) : 
                 <Button positive icon labelPosition='left' onClick={this.choseDates}>
                   שמור!
