@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "prettier": "1.14.3",
-    "react-cosmos": "^4.7.0"
+    "react-cosmos": "^4.7.0",
+    "svg-inline-loader": "^0.8.0"
   },
   "dependencies": {
     "autoprefixer": "7.1.6",
@@ -70,6 +71,9 @@
     "redux-thunk": "2.3.0",
     "resolve": "1.6.0",
     "sanitize.css": "7.0.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.85.0",
+    "semantic-ui-rtl": "^2.4.2",
     "serve": "10.0.1",
     "sqlite3": "^4.0.2",
     "style-loader": "0.19.0",

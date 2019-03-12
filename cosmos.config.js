@@ -1,5 +1,6 @@
+
 module.exports = {
-    webpackConfigPath: 'react-scripts/config/webpack.config',
+    webpackConfigPath: './config/webpack.config.dev',
     publicPath: 'public',
     proxiesPath: './cosmos.proxies',
   };

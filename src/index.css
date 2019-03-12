@@ -52,7 +52,12 @@ button:disabled {
   text-align: center;
   padding: 5px;
   font-size: 12px;
+  line-height: 1.8em;
   margin-bottom: 6px;
+}
+.day-date-count-title {
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .day .day-users {
   text-align: center;

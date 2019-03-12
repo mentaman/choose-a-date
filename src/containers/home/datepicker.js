@@ -1,4 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import { Icon, Label } from 'semantic-ui-react'
+import _ from "lodash";
+
 Date.prototype.addDays = function(days) {
     var dat = new Date(this.valueOf())
     dat.setDate(dat.getDate() + days);
@@ -33,8 +36,19 @@ function getDates(startDate, stopDate) {
         let {users, date} = this.props;
         return (users && users[getDateFormat(date)]) || [];
      }
+     renderRank(rank) {
+         switch(rank) {
+             case 1:
+                return <span>מקום ראשון <Icon name='star' /></span>
+            case 2:
+                return <span>מקום שני <Icon name='star outline' /></span>
+             default:
+                return <span>מקום {rank}</span>
+         }
+        
+     }
      render() {
-         let {date, choosed} = this.props;
+         let {date, choosed, rank} = this.props;
          let users = this.getUsers();
         return (
             <div key={getDateFormat(date)} 
@@ -48,6 +62,14 @@ function getDates(startDate, stopDate) {
                         </div>
                         <div className={"day-date"}>
                             {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}
+                        </div>
+                        <div className={"day-date-count-title"}>
+                            <Label>
+                                <Icon name='users' /> {users.length} אנשים
+                            </Label>
+                        </div>
+                        <div className={"day-date-count-title"}>
+                            {this.renderRank(rank)}
                         </div>
                     </div>
                     <div className={"day-users"}>
@@ -79,8 +101,14 @@ export class DatePicker extends Component {
         return getDates(this.props.fromDate, this.props.toDate).map(getDateFormat).filter(date => this.isChosen((date)));
     }
     
+    getDateRanks = () => {
+        let usersLength = Object.values(this.props.users).map(u => u.length);
+        usersLength = _.uniq(usersLength);
+        return _.orderBy(usersLength, "desc");
+    }
 
     render() {
+        let ranks = this.getDateRanks();
         return <div onMouseUp={() => {
             if(this.state.dragging) {
                 this.setState({dragging: false})
@@ -88,8 +116,10 @@ export class DatePicker extends Component {
             
         }} >
             {getDates(this.props.fromDate, this.props.toDate).map((date) => {
+                let formatDate = getDateFormat(date);
                 let choosed = this.isChosen(getDateFormat(date));
                 return <DayDate choosed={choosed} 
+                                rank={ranks.indexOf((this.props.users && this.props.users[formatDate] && this.props.users[formatDate].length)  || 0)}
                                 onMouseEnter={() => {
                                     if(this.state.dragging) {
                                         let newDates = {...this.state.dates};
