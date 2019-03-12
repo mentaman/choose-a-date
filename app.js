@@ -1,5 +1,3 @@
-import 'semantic-ui-css/semantic.min.css'
-import 'semantic-ui-rtl/semantic/dist/semantic.rtl.css';
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 require('./config/env');
