@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {formatUsers} from "./hardcodedusers";
 import { push } from 'connected-react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -90,7 +91,7 @@ export class Home extends Component{
                     ref={this.datepicker}
                     fromDate={new Date("2019-04-01")}
                     toDate={new Date("2019-04-30")}
-                    users={this.state.users}
+                    users={formatUsers(this.state.users)}
                     user={this.props.user}
                 />
               </div>) : 

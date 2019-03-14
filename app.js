@@ -7,20 +7,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-const webpack = require('webpack');
-const middleware = require('webpack-dev-middleware');
 
 var indexRouter = require('./routes/index');
 var datesRouter = require('./routes/dates');
 
 var app = express();
-/*if(env.toLowerCase() === 'development') {
+if(env.toLowerCase() === 'development') {
+  console.log("use webpack")
+  const webpack = require('webpack');
+  const middleware = require('webpack-dev-middleware');
   const config = require('./config/webpack.config.dev');
   let compiler = webpack(config);
   app.use(middleware(compiler, {
     publicPath: config.output.publicPath,  
   }));
-}*/
+}
 // view engine setup
 
 app.use(cors({origin: '*'}));

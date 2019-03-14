@@ -1,4 +1,5 @@
 import {Home} from './index';
+import {formatUsers} from "./hardcodedusers";
 
 export default {
   component: Home,
