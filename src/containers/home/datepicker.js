@@ -96,7 +96,7 @@ export class DatePicker extends Component {
     }
 
     getAllUsers = () => {
-        return _.uniq(_.flatten(Object.values(this.props.users)));
+        return _.uniq(_.flatten(Object.values(this.props.users)).map(u => u.id));
     }
 
     render() {
