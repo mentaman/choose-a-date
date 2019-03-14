@@ -1,12 +1,13 @@
 import { getDates } from './getDates';
 import { getDateFormat } from './getDateFormat';
 import dors from "./people/dors.jpg";
+import orig from "./people/orig.jpg";
 
 let hardcoded_users = [
     {
-        picture: "https://graph.facebook.com/1686313663/picture?type=square", 
+        picture: orig, 
         id: "1686313663",
-        dates: getDates(new Date("2019-04-01"), new Date("2019-04-16")).map(getDateFormat)
+        dates: getDates(new Date("2019-04-01"), new Date("2019-04-16")).filter(d => d.getDay() < 5).map(getDateFormat)
     },
     {
         picture: dors, 
