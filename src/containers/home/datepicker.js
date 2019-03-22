@@ -70,6 +70,10 @@ import { getDateFormat } from './getDateFormat';
         )
      }
  }
+
+ function sortNumber(a,b) {
+    return b - a;
+}
 export class DatePicker extends Component {
     constructor(props) {
         super(props);
@@ -91,7 +95,7 @@ export class DatePicker extends Component {
     getDateRanks = () => {
         let usersLength = Object.values(this.props.users).map(u => u.length);
         usersLength = _.uniq(usersLength);
-        usersLength = usersLength.sort().reverse();
+        usersLength = usersLength.sort(sortNumber);
         return usersLength;
     }
 
