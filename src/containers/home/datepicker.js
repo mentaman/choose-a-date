@@ -91,7 +91,7 @@ export class DatePicker extends Component {
     getDateRanks = () => {
         let usersLength = Object.values(this.props.users).map(u => u.length);
         usersLength = _.uniq(usersLength);
-        usersLength.sort().reverse();
+        usersLength = usersLength.sort().reverse();
         return usersLength;
     }
 
