@@ -89,8 +89,8 @@ export class Home extends Component{
               </div> 
                 <DatePicker
                     ref={this.datepicker}
-                    fromDate={new Date("2019-04-01")}
-                    toDate={new Date("2019-04-30")}
+                    fromDate={new Date("2019-06-07")}
+                    toDate={new Date("2019-06-21")}
                     users={formatUsers(this.state.users)}
                     user={this.props.user}
                 />
