@@ -1,6 +1,9 @@
 {
   "private": true,
   "homepage": "https://create-react-app-redux.now.sh",
+  "engines": {
+    "node": "8.x"
+  },
   "scripts": {
     "deploy": "now && now alias",
     "start": "node ./bin/www",
