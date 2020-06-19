@@ -8,6 +8,7 @@ import {DatePicker} from "./datepicker.js";
 import {getDates, sendDates} from "../../api/dates-api.js"
 import {toast} from "react-toastify";
 import FacebookLogin from 'react-facebook-login';
+import _ from "lodash";
 import {Button, Icon} from "semantic-ui-react";
 
 import {
@@ -18,6 +19,18 @@ const MyFacebookButton = ({ onClick }) => (
     תתחבר יא קקי
   </button>
 );
+
+export class Users extends Component {
+  render() {
+    let voters = _.uniqBy(_.flatten(Object.values(this.props.users)), u => u.id);
+    return <div style={{textAlign: "center", paddingBottom: "12px", paddingTop: "12px"}}>
+      <div>{voters.length} מצביעים</div>
+      {voters.map(u => <div style={{display: "inline-block"}}>
+          <img src={u.picture} />
+        </div>)}
+    </div>;
+  }
+}
 
 export class Home extends Component{
   constructor(props) {
@@ -87,6 +100,7 @@ export class Home extends Component{
                   <Icon name="refresh" />
                   </Button>}
               </div> 
+                <Users users={formatUsers(this.state.users)} />
                 <DatePicker
                     ref={this.datepicker}
                     fromDate={new Date("2020-06-21")}
