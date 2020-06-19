@@ -2,18 +2,30 @@ import { getDates } from './getDates';
 import { getDateFormat } from './getDateFormat';
 import dors from "./people/dors.jpg";
 import orig from "./people/orig.jpg";
+import denis from "./people/denis.jpg";
+import itays from "./people/itays.png";
 
 let hardcoded_users = [
-    {
+    /*{
         picture: orig, 
         id: "1686313663",
         dates: getDates(new Date("2019-04-01"), new Date("2019-04-16")).filter(d => d.getDay() < 5).map(getDateFormat)
-    },
+    },*/
     {
         picture: dors, 
         id: "dors",
-        dates: [...getDates(new Date("2019-04-01"), new Date("2019-04-16")).map(getDateFormat), ...getDates(new Date("2019-04-26"), new Date("2019-04-30")).map(getDateFormat)]
-    }
+        dates: [...getDates(new Date("2019-04-01"), new Date("2019-04-16")).map(getDateFormat), ...getDates(new Date("2019-07-02"), new Date("2019-07-05")).map(getDateFormat)]
+    },
+    {
+        picture: denis, 
+        id: "denis",
+        dates: [...getDates(new Date("2019-07-01"), new Date("2019-07-05")).map(getDateFormat)]
+    },
+    /*{
+        picture: itays, 
+        id: "itays",
+        dates: [...getDates(new Date("2019-07-01"), new Date("2019-07-05")).map(getDateFormat)]
+    }*/
 ]
 console.log("hardcoded users", hardcoded_users)
 let hardcoded_users_dates = {
