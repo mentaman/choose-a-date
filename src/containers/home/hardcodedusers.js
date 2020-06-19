@@ -21,11 +21,11 @@ let hardcoded_users = [
         id: "denis",
         dates: [...getDates(new Date("2020-07-01"), new Date("2020-07-05")).map(getDateFormat)]
     },
-    /*{
+    {
         picture: itays, 
         id: "itays",
-        dates: [...getDates(new Date("2020-07-01"), new Date("2020-07-05")).map(getDateFormat)]
-    }*/
+        dates: [new Date("2020-06-25"), new Date("2020-07-02")].map(getDateFormat)
+    }
 ]
 console.log("hardcoded users", hardcoded_users)
 let hardcoded_users_dates = {
