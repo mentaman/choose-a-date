@@ -14,7 +14,7 @@ let hardcoded_users = [
     {
         picture: dors, 
         id: "dors",
-        dates: [...getDates(new Date("2020-04-01"), new Date("2020-04-16")).map(getDateFormat), ...getDates(new Date("2019-07-02"), new Date("2019-07-05")).map(getDateFormat)]
+        dates: [...getDates(new Date("2020-07-02"), new Date("2020-07-05")).map(getDateFormat)]
     },
     {
         picture: denis, 
