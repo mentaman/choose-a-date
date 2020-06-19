@@ -26,7 +26,7 @@ export class Users extends Component {
     return <div style={{textAlign: "center", paddingBottom: "12px", paddingTop: "12px"}}>
       <div>{voters.length} מצביעים</div>
       {voters.map(u => <div style={{display: "inline-block"}}>
-          <img src={u.picture} />
+          <img style={{maxWidth: "50px"}} src={u.picture} />
         </div>)}
     </div>;
   }
