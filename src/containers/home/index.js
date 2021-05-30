@@ -103,8 +103,8 @@ export class Home extends Component{
                 <Users users={formatUsers(this.state.users)} />
                 <DatePicker
                     ref={this.datepicker}
-                    fromDate={new Date("2020-06-21")}
-                    toDate={new Date("2020-07-05")}
+                    fromDate={new Date("2021-06-01")}
+                    toDate={new Date("2021-19-06")}
                     users={formatUsers(this.state.users)}
                     user={this.props.user}
                 />
